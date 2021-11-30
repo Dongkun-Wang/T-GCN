@@ -8,31 +8,10 @@
 
 import pandas as pd
 import numpy as np
-from utils import  evaluation
-
+from utils import evaluation
+from datareader import *
 from sklearn.svm import SVR
 from statsmodels.tsa.arima_model import ARIMA
-
-
-def preprocess_data(data, time_len, rate, seq_len, pre_len):
-    data1 = np.mat(data)
-    train_size = int(time_len * rate)
-    train_data = data1[0:train_size]
-    test_data = data1[train_size:time_len]
-
-    trainX, trainY, testX, testY = [], [], [], []
-    for i in range(len(train_data) - seq_len - pre_len):
-        a = train_data[i: i + seq_len + pre_len]
-        trainX.append(a[0: seq_len])
-        trainY.append(a[seq_len: seq_len + pre_len])
-    for i in range(len(test_data) - seq_len - pre_len):
-        b = test_data[i: i + seq_len + pre_len]
-        testX.append(b[0: seq_len])
-        testY.append(b[seq_len: seq_len + pre_len])
-    return trainX, trainY, testX, testY
-
-
-###### evaluation ######
 
 
 path = r'data/LA_speed.csv'
@@ -43,7 +22,7 @@ num_nodes = data.shape[1]
 train_rate = 0.8
 seq_len = 12
 pre_len = 3
-trainX, trainY, testX, testY = preprocess_data(data, time_len, train_rate, seq_len, pre_len)
+trainX, trainY, testX, testY, max_value = preprocess_data(data, time_len, train_rate, seq_len, pre_len)
 method = 'HA'  ####HA or SVR or ARIMA
 
 ########### HA #############

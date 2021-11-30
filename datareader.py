@@ -13,6 +13,8 @@ def load_data(city):
 
 
 def preprocess_data(data, time_len, rate, seq_len, pre_len):
+    max_value = np.max(data)
+    data = data / np.max(data)
     train_size = int(time_len * rate)
     train_data = data[0:train_size]
     test_data = data[train_size:time_len]
@@ -31,4 +33,4 @@ def preprocess_data(data, time_len, rate, seq_len, pre_len):
     trainY = np.array(trainY)
     testX = np.array(testX)
     testY = np.array(testY)
-    return trainX, trainY, testX, testY
+    return trainX, trainY, testX, testY, max_value
