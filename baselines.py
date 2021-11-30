@@ -43,7 +43,7 @@ def evaluation(a, b):
     return rmse, mae, 1 - F_norm, r2, var
 
 
-path = r'data/los_speed.csv'
+path = r'data/LA_speed.csv'
 data = pd.read_csv(path)
 
 time_len = data.shape[0]
