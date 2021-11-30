@@ -8,9 +8,8 @@
 
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-import numpy.linalg as la
-import math
+from utils import  evaluation
+
 from sklearn.svm import SVR
 from statsmodels.tsa.arima_model import ARIMA
 
@@ -34,13 +33,6 @@ def preprocess_data(data, time_len, rate, seq_len, pre_len):
 
 
 ###### evaluation ######
-def evaluation(a, b):
-    rmse = math.sqrt(mean_squared_error(a, b))
-    mae = mean_absolute_error(a, b)
-    F_norm = la.norm(a - b) / la.norm(a)
-    r2 = 1 - ((a - b) ** 2).sum() / ((a - a.mean()) ** 2).sum()
-    var = 1 - (np.var(a - b)) / np.var(a)
-    return rmse, mae, 1 - F_norm, r2, var
 
 
 path = r'data/LA_speed.csv'
