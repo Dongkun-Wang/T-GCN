@@ -1,11 +1,4 @@
 
-## Requirements:
-* tensorflow
-* scipy
-* numpy
-* matplotlib
-* pandas
-* math
 
 ## Run the demo
 Python main.py

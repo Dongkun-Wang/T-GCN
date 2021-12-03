@@ -7,7 +7,7 @@ parser.add_argument('--training_epoch', type=int, default=1000,
                     help='Number of epochs to train')
 parser.add_argument('--gru_units', type=int, default=64,
                     help='hidden units of gru')
-parser.add_argument('--seq_len', type=int, default=12,
+parser.add_argument('--seq_len', type=int, default=4,
                     help='time length of inputs.')
 parser.add_argument('--pre_len', type=int, default=3,
                     help='time length of prediction')

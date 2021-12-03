@@ -26,7 +26,7 @@ def sparse_to_tuple(mx):
     return tf.sparse_reorder(L)
 
 
-def calculate_laplacian(adj, lambda_max=1):
+def calculate_laplacian(adj):
     adj = normalized_adj(adj + sp.eye(adj.shape[0]))
     adj = sp.csr_matrix(adj)
     adj = adj.astype(np.float32)
@@ -44,7 +44,7 @@ def weight_variable_glorot(input_dim, output_dim, name=""):
 def evaluation(a, b):
     rmse = math.sqrt(mean_squared_error(a, b))
     mae = mean_absolute_error(a, b)
-    F_norm = la.norm(a - b, 'fro') / la.norm(a, 'fro')
+    accuracy = 1-la.norm(a - b, 'fro') / la.norm(a, 'fro')
     r2 = 1 - ((a - b) ** 2).sum() / ((a - a.mean()) ** 2).sum()
     var = 1 - (np.var(a - b)) / np.var(a)
-    return rmse, mae, 1 - F_norm, r2, var
+    return rmse, mae, accuracy, r2, var
