@@ -45,6 +45,6 @@ class TGCN_Cell(tf.keras.layers.AbstractRNNCell):
             x0 = tf.reshape(x_s, shape=[self._nodes, -1])
             x1 = tf.sparse.sparse_dense_matmul(self._adj, x0)
             x = tf.reshape(x1, shape=[-1, input_size])
-            x = layers.Dense(self._nodes * output_size, activation="sigmoid")(x)
+            x = layers.Dense(output_size, activation="sigmoid")(x)
             x = tf.reshape(x, shape=[-1, self._nodes * output_size])
         return x
